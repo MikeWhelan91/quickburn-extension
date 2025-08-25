@@ -1,0 +1,61 @@
+# ===== Node / dev =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp.*
+.pnpm-debug.log
+
+# Lockfiles if you don't want them in git (optional)
+# package-lock.json
+# yarn.lock
+
+# Build output
+dist/
+build/
+*.zip
+
+# ===== Editor / OS =====
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# VSCode
+.vscode/
+.history/
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Windows
+ehthumbs.db
+Desktop.ini
+
+# Temp files and logs
+*.log
+tmp/
+temp/
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+secret-*.json
+
+# Chrome extension unpacked / local packaging artifacts
+.crx
+*.pem
+
+# Test / coverage
+coverage/
+.nyc_output/
+
+# Misc
+.idea/
+*.iml
+
+# Keep vendor/argon2 in the repo (it contains argon2.js + argon2.wasm required for the extension).
+# If you'd prefer to not track vendor/argon2 and instead install at build time, uncomment:
+# vendor/argon2/

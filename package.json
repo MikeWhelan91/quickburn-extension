@@ -1,0 +1,14 @@
+{
+  "name": "quickburn-extension",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "zip:chrome": "npx bestzip dist/quickburn-extension-chrome.zip manifest.json background.js popup.html popup.js icons/*",
+    "zip:firefox": "npx bestzip dist/quickburn-extension-firefox.zip manifest-firefox.json background.js popup.html popup.js icons/*",
+    "zip": "mkdir -p dist && npm run zip:chrome && npm run zip:firefox"
+  },
+  "devDependencies": {
+    "argon2-browser": "^1.18.0",
+    "bestzip": "^2.2.1"
+  }
+}

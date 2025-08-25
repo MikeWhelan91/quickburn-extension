@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Quickburn</title>
+    <style>
+      :root{
+        --paper-bg:#f8f1e3;
+        --paper-surface:#fffdf7;
+        --ink:#2a2a2a;
+        --muted:#4a4540;
+        --ember:#cc3a21;
+        --ember-dark:#8b1e1e;
+        --ember-glow: rgba(204,58,33,.28);
+      }
+      html,body{height:100%}
+      body {
+        font: 14px Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+        margin:0; min-width:320px; max-width:360px;
+        background: var(--paper-bg);
+        color: var(--ink);
+        display:flex; flex-direction:column;
+      }
+      .wrap{ padding:12px 12px 14px 12px; display:flex; flex-direction:column; gap:10px; }
+      label { display:block; font-size:12px; color:var(--muted); margin:2px 0 4px; }
+      .note, select, input[type="password"]{
+        width:100%; box-sizing:border-box;
+        background: linear-gradient(#fffdf7,#fff8dc);
+        border:1px solid rgba(60,40,20,.18);
+        border-radius:12px;
+        padding:10px 12px;
+        box-shadow: 0 2px 6px rgba(34,22,7,.15);
+        outline:none;
+        transition: box-shadow .15s ease, border-color .15s ease;
+      }
+      .note:focus, select:focus, input[type="password"]:focus{
+        border-color: rgba(204,58,33,.45);
+        box-shadow: 0 0 0 3px rgba(204,58,33,.12), 0 2px 6px rgba(34,22,7,.15);
+      }
+      textarea.note{ height:120px; resize:vertical; }
+      .row{ display:grid; grid-template-columns:minmax(140px,1fr) 92px; gap:8px; align-items:center; }
+      .btn{
+        position:relative; display:inline-block; width:100%;
+        border:0; border-radius:14px; padding:12px 16px;
+        background: linear-gradient(180deg, var(--ember), #d64545);
+        color:#fff; font-weight:700; letter-spacing:.2px;
+        box-shadow: 0 4px 10px var(--ember-glow);
+        cursor:pointer;
+        transition: transform .06s ease, box-shadow .15s ease, filter .15s ease;
+      }
+      .btn::before{
+        content:""; position:absolute; inset:0; border-radius:14px;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,.25), inset 0 10px 18px rgba(0,0,0,.22);
+        mix-blend-mode: multiply; opacity:.35; pointer-events:none;
+      }
+      .btn:hover{ filter:brightness(1.04); box-shadow:0 6px 14px var(--ember-glow); }
+      .btn:active{ transform: translateY(1px); }
+      .btn.secondary{
+        background: linear-gradient(180deg, #444, #2a2a2a);
+        box-shadow: 0 4px 10px rgba(0,0,0,.15);
+      }
+      .btn.secondary::before{ box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), inset 0 8px 14px rgba(0,0,0,.3); }
+      .linkbox{
+        background: var(--paper-surface); padding:10px 12px; border-radius:12px;
+        border:1px solid rgba(60,40,20,.18); box-shadow: 0 2px 6px rgba(34,22,7,.12);
+        font-size:12px; word-break: break-all;
+      }
+      .hint{ color:var(--muted); font-size:12px; }
+      .footer{ padding:10px 12px 12px; color:var(--muted); font-size:11px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div>
+        <label>Secret</label>
+        <textarea id="secret" class="note" placeholder="Right-click text to create"></textarea>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Expires</label>
+          <select id="expires" class="note" style="padding-right:8px">
+            <option value="10m">10 minutes</option>
+            <option value="1h">1 hour</option>
+            <option value="24h" selected>24 hours</option>
+            <option value="7d">7 days</option>
+            <option value="30d">30 days</option>
+          </select>
+        </div>
+        <div>
+          <label>Reads</label>
+          <select id="reads" class="note">
+            <option>1</option><option>2</option><option>3</option><option>5</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label>Password (optional) <span class="hint">(MVP ignores; add later)</span></label>
+        <input id="password" type="password" class="note" autocomplete="off"/>
+      </div>
+
+      <button id="create" class="btn">Create Quickburn Link</button>
+
+      <div id="result" style="display:none">
+        <div id="linkbox" class="linkbox"></div>
+        <div style="display:flex; gap:8px; margin-top:8px">
+          <button id="copy" class="btn">Copy Link</button>
+          <button id="clear" class="btn secondary">Clear</button>
+        </div>
+      </div>
+
+      <div id="msg" class="hint"></div>
+    </div>
+    <div class="footer"></div>
+<script src="vendor/argon2/argon2.js"></script>
+<script src="popup.js"></script>  </body>
+</html>
