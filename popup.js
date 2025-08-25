@@ -15,8 +15,7 @@ const ensureArgon2 = (async () => {
   if (typeof argon2 === "undefined") {
     throw new Error("argon2 still undefined after load — check paths and manifest.");
   }
-  // Point argon2 at packaged WASM and wait for ready
-  argon2.wasmPath = chrome.runtime.getURL("vendor/argon2/argon2.wasm");
+  // Bundled build includes WASM; just ensure any async init completes
   if (argon2 && typeof argon2.ready === "object") {
     await argon2.ready;
   }
