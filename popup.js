@@ -148,6 +148,7 @@ async function qbCreate({ text, ttlSeconds, maxReads, password }) {
       linkBox.textContent = link;
       result.style.display = "block";
       msgEl.textContent = password ? "Password-protected link ready." : "Link ready.";
+      btn.disabled = true;
     } catch (e) {
       msgEl.textContent = String(e?.message || e);
     }
@@ -165,5 +166,6 @@ async function qbCreate({ text, ttlSeconds, maxReads, password }) {
     linkBox.textContent = "";
     result.style.display = "none";
     msgEl.textContent = "";
+    btn.disabled = false;
   });
 })();
