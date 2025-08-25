@@ -2,7 +2,7 @@
 <html>
   <head>
       <meta charset="utf-8" />
-      <meta name="description" content="Create burn-after-reading Quickburn links with optional password protection." />
+      <meta name="description" content="Securely share sensitive info with self-destructing, burn-after-reading Quickburn links with optional password protection." />
       <title>Quickburn</title>
     <style>
       :root{
@@ -23,6 +23,10 @@
         display:flex; flex-direction:column;
       }
       .wrap{ padding:12px 12px 14px 12px; display:flex; flex-direction:column; gap:10px; }
+      .header{ text-align:center; }
+      .logo{ font-size:20px; font-weight:700; letter-spacing:.5px; }
+      .logo .burn{ color:var(--ember); }
+      .tagline{ margin-top:4px; font-size:12px; color:var(--muted); }
       label { display:block; font-size:12px; color:var(--muted); margin:2px 0 4px; }
       .note, select, input[type="password"]{
         width:100%; box-sizing:border-box;
@@ -80,6 +84,10 @@
   </head>
   <body>
     <div class="wrap">
+      <div class="header">
+        <div class="logo">QUICK<span class="burn">BURN</span></div>
+        <div class="tagline">Securely share sensitive info with self-destructing links.</div>
+      </div>
       <div>
         <label>Secret</label>
         <textarea id="secret" class="note" placeholder="Right-click text to create"></textarea>

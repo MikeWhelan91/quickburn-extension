@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Quickburn — Burn After Reading",
-  "description": "Right-click text to create a burn-after-reading Quickburn link.",
+  "description": "Securely share sensitive info with self-destructing Quickburn links. Right-click text to create a burn-after-reading link.",
   "version": "1.0.0",
   "action": {
     "default_popup": "popup.html"
