@@ -58,4 +58,4 @@ coverage/
 
 # Keep vendor/argon2 in the repo (it contains argon2.js + argon2.wasm required for the extension).
 # If you'd prefer to not track vendor/argon2 and instead install at build time, uncomment:
-# vendor/argon2/
+ vendor/argon2/
